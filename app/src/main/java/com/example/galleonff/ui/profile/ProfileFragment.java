@@ -1,4 +1,4 @@
-package com.example.legiontm.ui.profile;
+package com.example.galleonff.ui.profile;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -6,25 +6,22 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.constraintlayout.widget.ConstraintLayout;;
+;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.RecyclerView;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
-import com.example.legiontm.R;
-import com.example.legiontm.databinding.FragmentProfileBinding;
-import com.example.legiontm.model.User;
-import com.example.legiontm.ui.login.LoginActivity;
-import com.example.legiontm.utils.CustomUtility;
-import com.example.legiontm.utils.MySingleton;
+import com.example.galleonff.databinding.FragmentProfileBinding;
+import com.example.galleonff.model.User;
+import com.example.galleonff.ui.login.LoginActivity;
+import com.example.galleonff.utils.CustomUtility;
+import com.example.galleonff.utils.MySingleton;
 import com.ramijemli.percentagechartview.PercentageChartView;
 
 import org.json.JSONException;

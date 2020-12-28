@@ -1,4 +1,4 @@
-package com.example.legiontm.model;
+package com.example.galleonff.model;
 
 public class Retailer {
     String retailerName, retailerDmsCode, retailerAddress, retailerLat, retailerLon, retailerVisitCount;

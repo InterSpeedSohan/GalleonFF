@@ -1,4 +1,4 @@
-package com.example.legiontm.model;
+package com.example.galleonff.model;
 
 import android.content.SharedPreferences;
 

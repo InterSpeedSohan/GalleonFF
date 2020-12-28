@@ -1,4 +1,4 @@
-package com.example.legiontm.ui.login;
+package com.example.galleonff.ui.login;
 
 import android.Manifest;
 import android.content.Context;
@@ -23,11 +23,11 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
-import com.example.legiontm.MainActivity;
-import com.example.legiontm.R;
-import com.example.legiontm.model.User;
-import com.example.legiontm.utils.CustomUtility;
-import com.example.legiontm.utils.MySingleton;
+import com.example.galleonff.MainActivity;
+import com.example.galleonff.R;
+import com.example.galleonff.model.User;
+import com.example.galleonff.utils.CustomUtility;
+import com.example.galleonff.utils.MySingleton;
 
 
 import org.json.JSONException;

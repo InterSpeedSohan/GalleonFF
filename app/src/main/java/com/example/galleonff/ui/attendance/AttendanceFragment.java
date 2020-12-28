@@ -1,4 +1,4 @@
-package com.example.legiontm.ui.attendance;
+package com.example.galleonff.ui.attendance;
 
 import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
@@ -6,7 +6,6 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
-import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.util.Log;
@@ -16,7 +15,6 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.DatePicker;
-import android.widget.Spinner;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -28,12 +26,12 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
-import com.example.legiontm.MainActivity;
-import com.example.legiontm.R;
-import com.example.legiontmsup.databinding.FragmentAttendanceBinding;
-import com.example.legiontm.model.User;
-import com.example.legiontm.utils.CustomUtility;
-import com.example.legiontm.utils.MySingleton;
+import com.example.galleonff.MainActivity;
+import com.example.galleonff.R;
+import com.example.galleonff.databinding.FragmentAttendanceBinding;
+import com.example.galleonff.model.User;
+import com.example.galleonff.utils.CustomUtility;
+import com.example.galleonff.utils.MySingleton;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -44,7 +42,6 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
@@ -59,10 +56,7 @@ public class AttendanceFragment extends Fragment {
     String photoName = "", imageString = "";
     Boolean photoFlag = false;
 
-    Uri photoURI;
     static final int REQUEST_IMAGE_CAPTURE = 6;
-    String currentPhotoPath = "";
-    static Bitmap bitmap;
 
     SharedPreferences sharedPreferences;
 
@@ -72,17 +66,14 @@ public class AttendanceFragment extends Fragment {
     ProgressDialog progressDialog;
     JSONObject jsonObject;
     JSONArray jsonArray;
-    String activeBtn = "", fromDate = "", toDate = "",place = "",leaveType = "",retailerCode = "",reason = "",deviceDate = "";
+    String activeBtn = "", fromDate = "", toDate = "",place = "",leaveType = "", leaveTypeId = "",retailerCode = "",reason = "",deviceDate = "";
 
 
     final Calendar myCalendar = Calendar.getInstance();
     final Calendar myCalendar2 = Calendar.getInstance();
 
-    String[] optionList = new String[] {"Distribution House", "Retail Point", "Head Office","In Transit","Others"};
-    String[] retailerList = new String[] {"N/A"};
-    String[] leaveTypeList = new String[] {"Casual Leave", "Half Day Leave", "Sick Leave", "On Training", "On Meeting"};
-    List<String> DMSCode = new ArrayList<String>();
-    String typeId = "";
+    ArrayList<String> leaveTypeList = new ArrayList<>();
+    Map<Integer, String> leaveTypeIdMap = new HashMap<>();
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -139,13 +130,14 @@ public class AttendanceFragment extends Fragment {
                 binding.takeSelfieText.getResources().getColor(R.color.text_color);
             }
         });
-        ArrayAdapter<String> adapter2 = new ArrayAdapter<String>(requireContext(), R.layout.spinner_item, leaveTypeList);
-        binding.leaveTypeSpinner.setAdapter(adapter2);
+
 
         binding.leavebtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 activeBtn = "leave";
+                leaveType = "";
+                leaveTypeId = "";
                 binding.leavebtn.setBackgroundResource(R.drawable.active);
                 binding.inbtn.setBackgroundResource(R.drawable.inactive);
                 binding.outbtn.setBackgroundResource(R.drawable.inactive);
@@ -241,6 +233,7 @@ public class AttendanceFragment extends Fragment {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 leaveType = binding.leaveTypeSpinner.getSelectedItem().toString();
+                leaveTypeId = leaveTypeIdMap.get(position);
             }
 
             @Override
@@ -277,7 +270,70 @@ public class AttendanceFragment extends Fragment {
 
             }
         });
+
+        getLeaveType();
+
     }
+
+    private void getLeaveType() {
+        pDialog = new SweetAlertDialog(requireContext(),SweetAlertDialog.PROGRESS_TYPE);
+        pDialog.show();
+        String upLoadServerUri = "https://rocket.atmdbd.com/api/android/get_attendance_status_list.php";
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, upLoadServerUri,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        pDialog.dismiss();
+                        Log.e("response",response);
+                        try {
+                            JSONObject jsonObject = new JSONObject(response);
+                            String code = jsonObject.getString("success");
+                            String message = jsonObject.getString("message");
+                            if(code.equals("true"))
+                            {
+                                jsonArray = jsonObject.getJSONArray("attendanceStatusList");
+                                for(int i=0;i<jsonArray.length();i++)
+                                {
+                                    leaveTypeList.add(jsonArray.getJSONObject(i).getString("name"));
+                                    leaveTypeIdMap.put(i,jsonArray.getJSONObject(i).getString("id"));
+                                }
+                                ArrayAdapter<String> adapter2 = new ArrayAdapter<String>(requireContext(), R.layout.spinner_item, leaveTypeList);
+                                binding.leaveTypeSpinner.setAdapter(adapter2);
+                            }
+                            else
+                            {
+                                code = "Failed";
+                                CustomUtility.showError(requireContext(),message,code);
+                                //CustomUtility.showError(AttendanceActivity.this,"You allready submitted in",code);
+                            }
+
+
+                        } catch (JSONException e) {
+                            CustomUtility.showError(requireContext(), e.getMessage(), "Failed");
+                        }
+                    }
+                }, new Response.ErrorListener(){
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                pDialog.dismiss();
+                Log.e("response",error.toString());
+                CustomUtility.showError(requireContext(), "Network slow, try again", "Failed");
+
+            }
+        }
+        ) {
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> params = new HashMap<>();
+                params.put("UserId",user.getUserId());
+                params.put("AttendanceGroupId","2");
+                return params;
+            }
+        };
+        stringRequest.setRetryPolicy(new DefaultRetryPolicy( 50000, 5, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+        MySingleton.getInstance(requireContext()).addToRequestQue(stringRequest);
+    }
+
     //after finishing camera intent whether the picture was save or not
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -345,7 +401,7 @@ public class AttendanceFragment extends Fragment {
             CustomUtility.showWarning(requireContext(), "Select leave type","Required feild!");
             return false;
         }
-        else if(activeBtn.equals("leave") & reason.equals(""))
+        else if(activeBtn.equals("leave") & binding.reason.getText().toString().equals(""))
         {
             CustomUtility.showWarning(requireContext(),"Write the reason","Required feild!");
             return false;
@@ -359,8 +415,15 @@ public class AttendanceFragment extends Fragment {
     {
         pDialog = new SweetAlertDialog(requireContext(),SweetAlertDialog.PROGRESS_TYPE);
         pDialog.show();
-
-        String upLoadServerUri = "https://rocket.atmdbd.com/api/android/insert_attendance.php";
+        String upLoadServerUri;
+        if(activeBtn.equals("leave"))
+        {
+            upLoadServerUri = "https://rocket.atmdbd.com/api/android/insert_leave_submit.php";
+        }
+        else
+        {
+            upLoadServerUri = "https://rocket.atmdbd.com/api/android/insert_attendance.php";
+        }
         StringRequest stringRequest = new StringRequest(Request.Method.POST, upLoadServerUri,
                 new Response.Listener<String>() {
                     @Override
@@ -418,6 +481,7 @@ public class AttendanceFragment extends Fragment {
                 if(activeBtn.equals("leave"))
                 {
                     params.put("LeaveType",leaveType);
+                    params.put("LeaveTypeId",leaveTypeId);
                     params.put("LeaveDateStart",fromDate);
                     params.put("LeaveDateEnd",toDate);
                     params.put("Reason",binding.reason.getText().toString());

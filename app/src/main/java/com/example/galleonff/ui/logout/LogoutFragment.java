@@ -1,4 +1,4 @@
-package com.example.legiontm.ui.logout;
+package com.example.galleonff.ui.logout;
 
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -11,8 +11,8 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 
-import com.example.legiontm.R;
-import com.example.legiontm.model.User;
+import com.example.galleonff.R;
+import com.example.galleonff.model.User;
 
 import cn.pedant.SweetAlert.SweetAlertDialog;
 

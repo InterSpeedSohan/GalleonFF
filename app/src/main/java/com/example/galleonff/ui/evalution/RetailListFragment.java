@@ -1,14 +1,11 @@
- package com.example.legiontm.ui.evalution;
+ package com.example.galleonff.ui.evalution;
 
 
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
-import android.net.Uri;
 import android.os.Bundle;
-import android.provider.MediaStore;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,8 +14,6 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.constraintlayout.widget.ConstraintLayout;
-import androidx.core.content.FileProvider;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.DividerItemDecoration;
@@ -26,10 +21,10 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 
-import com.example.legiontm.R;
-import com.example.legiontm.databinding.FragmentRetailListBinding;
-import com.example.legiontm.model.Retailer;
-import com.example.legiontm.model.User;
+import com.example.galleonff.R;
+import com.example.galleonff.databinding.FragmentRetailListBinding;
+import com.example.galleonff.model.Retailer;
+import com.example.galleonff.model.User;
 
 
 import java.util.ArrayList;
@@ -37,7 +32,6 @@ import java.util.List;
 
 import cn.pedant.SweetAlert.SweetAlertDialog;
 
-import static android.app.Activity.RESULT_OK;
 import static android.content.Context.MODE_PRIVATE;
 
  public class RetailListFragment extends Fragment {

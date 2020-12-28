@@ -1,4 +1,4 @@
-package com.example.legiontm;
+package com.example.galleonff;
 
 import org.junit.Test;
 
