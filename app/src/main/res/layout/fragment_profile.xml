@@ -1,0 +1,356 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.motion.widget.MotionLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    app:layoutDescription="@xml/fragment_profile_scene"
+    tools:context="com.example.legiontmsup.ui.profile.ProfileFragment">
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/profileLayout"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_180sdp"
+        android:background="@drawable/side_nav_bar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/profile_image"
+        android:layout_height="@dimen/_70sdp"
+        android:layout_width="@dimen/_70sdp"
+        android:src="@drawable/ic_profile"
+        app:civ_border_color="@android:color/white"
+        app:civ_border_width="2dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/text_name"
+        android:text="Md. Sohanur Rahman"
+        android:textSize="@dimen/_14ssp"
+        android:textColor="@color/white"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <TextView
+        android:id="@+id/txtTeam"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Team: "
+        android:textColor="@color/white"
+        android:textSize="@dimen/_12ssp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/name" />
+
+
+    <TextView
+        android:id="@+id/txtMarket"
+        android:layout_width="@dimen/_160sdp"
+        android:layout_height="wrap_content"
+        android:text="Market/Area: "
+        android:textColor="@color/white"
+        android:textSize="@dimen/_12ssp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtTeam" />
+
+
+
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/nested_scroll_view"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/profileLayout">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:layout_editor_absoluteX="41dp"
+            tools:layout_editor_absoluteY="61dp">
+
+            <com.ramijemli.percentagechartview.PercentageChartView
+                android:id="@+id/today_chart"
+                android:layout_width="@dimen/_80sdp"
+                android:layout_height="@dimen/_80sdp"
+                android:layout_marginStart="8dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginTop="8dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:pcv_animDuration="800"
+                app:pcv_animInterpolator="accelerate"
+                app:pcv_backgroundBarColor="@color/ash"
+                app:pcv_gradientColors="#4CAF50, #c70039"
+                app:pcv_gradientType="linear"
+                app:pcv_mode="ring"
+                app:pcv_orientation="clockwise"
+                app:pcv_progress="0"
+                app:pcv_startAngle="270"
+                app:pcv_textColor="@color/black" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/constraintLayout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="@+id/today_chart"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/today_chart"
+                app:layout_constraintTop_toTopOf="@+id/today_chart">
+
+                <TextView
+                    android:id="@+id/textView4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Today achievement"
+                    android:textColor="@color/black"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/today_target"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Today target: "
+                    android:textColor="@color/black"
+                    app:layout_constraintStart_toStartOf="@+id/textView4"
+                    app:layout_constraintTop_toBottomOf="@+id/textView4" />
+
+                <TextView
+                    android:id="@+id/today_achievment"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Today achievment: "
+                    android:textColor="@color/black"
+                    app:layout_constraintStart_toStartOf="@+id/today_target"
+                    app:layout_constraintTop_toBottomOf="@+id/today_target" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+            <com.ramijemli.percentagechartview.PercentageChartView
+                android:id="@+id/total_chart"
+                android:layout_width="@dimen/_80sdp"
+                android:layout_height="@dimen/_80sdp"
+                android:layout_marginStart="8dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginTop="16dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/today_chart"
+                app:pcv_animDuration="800"
+                app:pcv_animInterpolator="accelerate"
+                app:pcv_backgroundBarColor="@color/ash"
+                app:pcv_gradientColors="#4CAF50, #c70039"
+                app:pcv_gradientType="linear"
+                app:pcv_mode="ring"
+                app:pcv_orientation="clockwise"
+                app:pcv_progress="0"
+                app:pcv_startAngle="270"
+                app:pcv_textColor="@color/black" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="@+id/total_chart"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/total_chart"
+                app:layout_constraintTop_toTopOf="@+id/total_chart">
+
+                <TextView
+                    android:id="@+id/textView5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Total achievement"
+                    android:textColor="@color/black"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/total_target"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Total count: "
+                    android:textColor="@color/black"
+                    app:layout_constraintStart_toStartOf="@+id/textView5"
+                    app:layout_constraintTop_toBottomOf="@+id/textView5" />
+
+                <TextView
+                    android:id="@+id/total_achievment"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Total target: "
+                    android:textColor="@color/black"
+                    app:layout_constraintStart_toStartOf="@+id/total_target"
+                    app:layout_constraintTop_toBottomOf="@+id/total_target" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+            <TextView
+                android:id="@+id/textView6"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/box_text_view_height"
+                android:layout_marginTop="32dp"
+                android:background="@drawable/text_view_orange"
+                android:gravity="center_vertical"
+                android:paddingLeft="@dimen/_10ssp"
+                android:text="Total TMR: "
+                android:textColor="@color/black"
+                app:layout_constraintEnd_toEndOf="@+id/textView10"
+                app:layout_constraintStart_toStartOf="@+id/textView8"
+                app:layout_constraintTop_toBottomOf="@+id/total_chart" />
+
+            <TextView
+                android:id="@+id/textView7"
+                android:layout_width="@dimen/box_text_view_width"
+                android:layout_height="@dimen/box_text_view_height"
+                android:background="@drawable/text_view_orange"
+                android:gravity="center"
+                android:text="12"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@+id/textView6"
+                app:layout_constraintEnd_toEndOf="@+id/textView11"
+                app:layout_constraintTop_toTopOf="@+id/textView6" />
+
+            <TextView
+                android:id="@+id/textView8"
+                android:layout_width="@dimen/box_text_view_width"
+                android:layout_height="@dimen/box_text_view_height"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/text_view_green"
+                android:gravity="center"
+                android:text="P"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toStartOf="@+id/textView9"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView6" />
+
+            <TextView
+                android:id="@+id/textView9"
+                android:layout_width="@dimen/box_text_view_width"
+                android:layout_height="@dimen/box_text_view_height"
+                android:background="@drawable/text_view_red"
+                android:gravity="center"
+                android:text="A"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@+id/textView8"
+                app:layout_constraintEnd_toStartOf="@+id/textView10"
+                app:layout_constraintStart_toEndOf="@+id/textView8"
+                app:layout_constraintTop_toTopOf="@+id/textView8" />
+
+            <TextView
+                android:id="@+id/textView10"
+                android:layout_width="@dimen/box_text_view_width"
+                android:layout_height="@dimen/box_text_view_height"
+                android:background="@drawable/text_view_ash"
+                android:gravity="center"
+                android:text="L"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@+id/textView8"
+                app:layout_constraintEnd_toStartOf="@+id/textView11"
+                app:layout_constraintStart_toEndOf="@+id/textView9"
+                app:layout_constraintTop_toTopOf="@+id/textView8" />
+
+            <TextView
+                android:id="@+id/textView11"
+                android:layout_width="@dimen/box_text_view_width"
+                android:layout_height="@dimen/box_text_view_height"
+                android:background="@drawable/text_view_light_orange"
+                android:gravity="center"
+                android:text="La"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@+id/textView8"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/textView10"
+                app:layout_constraintTop_toTopOf="@+id/textView8" />
+
+            <TextView
+                android:id="@+id/text_present"
+                android:layout_width="@dimen/box_text_view_width"
+                android:layout_height="@dimen/box_text_view_height"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/text_view_green"
+                android:gravity="center"
+                android:text="8"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                android:clickable="true"
+                android:foreground="?selectableItemBackground"
+                android:focusable="true"
+                app:layout_constraintEnd_toStartOf="@+id/text_absent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView8" />
+
+            <TextView
+                android:id="@+id/text_absent"
+                android:layout_width="@dimen/box_text_view_width"
+                android:layout_height="@dimen/box_text_view_height"
+                android:background="@drawable/text_view_red"
+                android:gravity="center"
+                android:text="2"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                android:clickable="true"
+                android:foreground="?selectableItemBackground"
+                android:focusable="true"
+                app:layout_constraintBottom_toBottomOf="@+id/text_present"
+                app:layout_constraintEnd_toStartOf="@+id/text_leave"
+                app:layout_constraintStart_toEndOf="@+id/text_present"
+                app:layout_constraintTop_toTopOf="@+id/text_present"
+                />
+
+            <TextView
+                android:id="@+id/text_leave"
+                android:layout_width="@dimen/box_text_view_width"
+                android:layout_height="@dimen/box_text_view_height"
+                android:background="@drawable/text_view_ash"
+                android:gravity="center"
+                android:text="1"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                android:clickable="true"
+                android:foreground="?selectableItemBackground"
+                android:focusable="true"
+                app:layout_constraintBottom_toBottomOf="@+id/text_present"
+                app:layout_constraintEnd_toStartOf="@+id/text_late"
+                app:layout_constraintStart_toEndOf="@+id/text_absent"
+                app:layout_constraintTop_toTopOf="@+id/text_present" />
+
+            <TextView
+                android:id="@+id/text_late"
+                android:layout_width="@dimen/box_text_view_width"
+                android:layout_height="@dimen/box_text_view_height"
+                android:background="@drawable/text_view_light_orange"
+                android:gravity="center"
+                android:text="3"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                android:clickable="true"
+                android:foreground="?selectableItemBackground"
+                android:focusable="true"
+                app:layout_constraintBottom_toBottomOf="@+id/text_present"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/text_leave"
+                app:layout_constraintTop_toTopOf="@+id/text_present" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+</androidx.constraintlayout.motion.widget.MotionLayout>

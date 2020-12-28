@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MotionScene 
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:motion="http://schemas.android.com/apk/res-auto">
+
+    <Transition
+        motion:constraintSetEnd="@+id/end"
+        motion:constraintSetStart="@id/start"
+        motion:duration="1000">
+        <OnSwipe
+            motion:dragDirection="dragUp"
+            motion:touchAnchorId="@+id/nested_scroll_view"
+            />
+       <KeyFrameSet>
+       </KeyFrameSet>
+    </Transition>
+
+    <ConstraintSet android:id="@+id/start">
+        <Constraint
+            android:layout_height="@dimen/_180sdp"
+            motion:layout_constraintStart_toStartOf="parent"
+            motion:layout_constraintEnd_toEndOf="parent"
+            android:layout_width="match_parent"
+            android:id="@+id/profileLayout"
+            motion:layout_constraintTop_toTopOf="parent" />
+        <Constraint
+            android:id="@+id/profile_image"
+            android:elevation="5dp"
+            motion:layout_constraintEnd_toEndOf="parent"
+            android:layout_height="@dimen/_70sdp"
+            android:layout_width="@dimen/_70sdp"
+            motion:layout_constraintTop_toTopOf="parent"
+            motion:layout_constraintStart_toStartOf="parent"
+            android:layout_marginTop="8dp" />
+        <Constraint
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            motion:layout_constraintTop_toBottomOf="@+id/profile_image"
+            android:id="@+id/text_name"
+            motion:layout_constraintEnd_toEndOf="@+id/profileLayout"
+            motion:layout_constraintStart_toStartOf="parent"
+            android:layout_marginTop="8dp" />
+
+        <Constraint
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            motion:layout_constraintTop_toBottomOf="@+id/text_name"
+            android:id="@+id/txtTeam"
+            android:layout_marginTop="8dp"
+            motion:layout_constraintStart_toStartOf="@+id/text_name" />
+        <Constraint
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            motion:layout_constraintTop_toBottomOf="@+id/txtTeam"
+            android:id="@+id/txtMarket"
+            motion:layout_constraintStart_toStartOf="@+id/txtTeam" />
+
+        <Constraint
+            android:id="@+id/nested_scroll_view"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            motion:layout_constraintStart_toStartOf="parent"
+            motion:layout_constraintBottom_toBottomOf="parent"
+            motion:layout_constraintEnd_toEndOf="parent"
+            motion:layout_constraintTop_toBottomOf="@+id/profileLayout" />
+        <Constraint
+            android:layout_height="0dp"
+            motion:layout_constraintStart_toStartOf="parent"
+            motion:layout_constraintBottom_toBottomOf="parent"
+            android:layout_width="match_parent"
+            motion:layout_constraintTop_toBottomOf="@+id/profileLayout"
+            android:id="@+id/nested_scroll_view"
+            motion:layout_constraintEnd_toEndOf="parent" />
+
+
+    </ConstraintSet>
+
+    <ConstraintSet android:id="@+id/end">
+        <Constraint
+            android:layout_height="@dimen/_100sdp"
+            motion:layout_constraintStart_toStartOf="parent"
+            motion:layout_constraintEnd_toEndOf="parent"
+            android:layout_width="match_parent"
+            android:id="@+id/profileLayout"
+            motion:layout_constraintTop_toTopOf="parent" />
+        <Constraint
+            android:layout_height="@dimen/_50sdp"
+            android:layout_width="@dimen/_50sdp"
+            motion:layout_constraintStart_toStartOf="parent"
+            android:id="@+id/profile_image"
+            motion:layout_constraintTop_toTopOf="parent"
+            android:layout_marginLeft="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp" >
+        </Constraint>
+        <Constraint
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            motion:layout_constraintTop_toBottomOf="@+id/profile_image"
+            android:id="@+id/text_name"
+            android:layout_marginTop="0dp"
+            motion:layout_constraintStart_toStartOf="parent"
+            android:layout_marginLeft="8dp"
+            android:layout_marginStart="8dp"
+            motion:layout_constraintBottom_toBottomOf="@+id/profileLayout"
+            />
+        <Constraint
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:id="@+id/txtTeam"
+            motion:layout_constraintTop_toTopOf="parent"
+            motion:layout_constraintEnd_toEndOf="parent"
+            motion:layout_constraintStart_toEndOf="@+id/profile_image"
+            android:layout_marginTop="16dp"
+            motion:layout_constraintHorizontal_bias="0.35" />
+        <Constraint
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            motion:layout_constraintTop_toBottomOf="@+id/txtTeam"
+            android:id="@+id/txtMarket"
+            motion:layout_constraintStart_toStartOf="@+id/txtTeam" />
+
+        <Constraint
+            android:layout_height="0dp"
+            motion:layout_constraintStart_toStartOf="parent"
+            motion:layout_constraintBottom_toBottomOf="parent"
+            motion:layout_constraintEnd_toEndOf="parent"
+            android:layout_width="match_parent"
+            motion:layout_constraintTop_toBottomOf="@+id/profileLayout"
+            android:id="@+id/recycler_view" />
+        <Constraint
+            android:id="@+id/nested_scroll_view"
+            motion:layout_constraintEnd_toEndOf="parent"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            motion:layout_constraintTop_toBottomOf="@+id/profileLayout"
+            motion:layout_constraintStart_toStartOf="parent"
+            motion:layout_constraintBottom_toBottomOf="parent" />
+    </ConstraintSet>
+</MotionScene>

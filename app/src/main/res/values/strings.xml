@@ -1,0 +1,23 @@
+<resources>
+    <string name="app_name">LegionTM SUP</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">LegionTM</string>
+    <string name="nav_header_subtitle">For Rocket TM SUP users only</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="menu_profile">Profile</string>
+    <string name="menu_evaluation">Evaluation</string>
+    <string name="menu_logout">Logout</string>
+    <string name="menu_attendance">Attendance</string>
+
+    <string name="gps_network_not_enabled">gps not enabled</string>
+    <string name="take_image">Take Image</string>
+    <string name="take_image_done">Take Image(Done)</string>
+    <string name="crash_toast_text">Crushed!</string>
+
+    <string name="version">1.0</string>
+    <string name="user_type">For Rocket TM SUP users only</string>
+    <string name="maps_api_key">AIzaSyCJUrup2ifisnMCMcq3_bFSaatCrnASDL4</string>
+</resources>
